@@ -53,7 +53,7 @@ public class MergeSortTest {
 
         assertArrayEquals(expResult, result);
 
-        array = new int[10000];
+        array = new int[10004565];
         for (int i = 0; i < array.length; i++) {
             array[i] = new Random().nextInt(Integer.MAX_VALUE);
         }
@@ -80,8 +80,8 @@ public class MergeSortTest {
         
         assertArrayEquals(expResult, result);
         
-        arrayA = new int[10222];
-        arrayB = new int[10011];
+        arrayA = new int[102];
+        arrayB = new int[1001];
         for (int i = 0; i < arrayA.length; i++) {
             arrayA[i] = new Random().nextInt(Integer.MAX_VALUE);
         }
