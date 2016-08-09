@@ -83,8 +83,7 @@ public class MergeSort implements Sortable {
                         System.out.println("Putting " + arrayB[j] + " at " + pos);
                         sortedArray[pos] = arrayB[j];
                         ++j;
-                        ++pos;
-
+                        ++pos;                        
                     } else if (arrayA[i] <= arrayB[j]) {
                         // append i
                         System.out.println("Putting " + arrayA[i] + " at " + pos);
