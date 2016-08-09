@@ -85,11 +85,10 @@ public class MergeSortTest {
         for (int i = 0; i < arrayA.length; i++) {
             arrayA[i] = new Random().nextInt(Integer.MAX_VALUE);
         }
-        System.out.println(Arrays.toString(arrayA));
+
         for (int i = 0; i < arrayB.length; i++) {
             arrayB[i] = new Random().nextInt(Integer.MAX_VALUE);
         }
-        System.out.println(Arrays.toString(arrayB));
         
         Arrays.sort(arrayA);
         Arrays.sort(arrayB);
@@ -102,6 +101,4 @@ public class MergeSortTest {
 
         assertArrayEquals(expResult, result);
     }
-
-   
 }

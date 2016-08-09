@@ -19,35 +19,22 @@ public class MergeSort implements Sortable {
     @Override
     public int[] sort(int[] array) {
         int[] sortedArray = {};
-
+        int[] arrayA, arrayB;
         try {
             if (array.length < 2) {
                 return array;
             } else if (array.length % 2 == 0) {
-                int[] arrayA = Arrays.copyOfRange(array, 0, array.length / 2);
-                int[] arrayB = Arrays.copyOfRange(array, (array.length / 2), array.length);
+                arrayA = Arrays.copyOfRange(array, 0, array.length / 2);
+                arrayB = Arrays.copyOfRange(array, (array.length / 2), array.length);
 
-                System.out.println(Arrays.toString(arrayA));
-                System.out.println(Arrays.toString(arrayB));
-
-                arrayA = sort(arrayA);
-                arrayB = sort(arrayB);
-
-                System.out.println(Arrays.toString(arrayA));
-                System.out.println(Arrays.toString(arrayB));
-                sortedArray = merge(arrayA, arrayB);
             } else {
-                int[] arrayA = Arrays.copyOfRange(array, 0, (array.length - 1) / 2);
-                int[] arrayB = Arrays.copyOfRange(array, (array.length - 1) / 2, array.length);
-
-                System.out.println(Arrays.toString(arrayA));
-                System.out.println(Arrays.toString(arrayB));
-
-                arrayA = sort(arrayA);
-                arrayB = sort(arrayB);
-
-                sortedArray = merge(arrayA, arrayB);
+                arrayA = Arrays.copyOfRange(array, 0, (array.length - 1) / 2);
+                arrayB = Arrays.copyOfRange(array, (array.length - 1) / 2, array.length);
             }
+
+            arrayA = sort(arrayA);
+            arrayB = sort(arrayB);
+            sortedArray = merge(arrayA, arrayB);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -62,70 +49,31 @@ public class MergeSort implements Sortable {
             int pos = 0;
 
             while (pos < sortedArray.length) {
-                // if keyA and keyB are intermediate
-                if (keyA < arrayA.length - 1 && keyB < arrayB.length - 1) {
-                    if (arrayA[keyA] > arrayB[keyB]) {                        
-                        sortedArray[pos] = arrayB[keyB];
-
-                        ++keyB;
-                        ++pos;
-                    } else if (arrayA[keyA] <= arrayB[keyB]) {
-                        sortedArray[pos] = arrayA[keyA];
-
-                        ++keyA;
-                        ++pos;
-                    }
-                } // else if keyA is last element
-                else if (keyA == arrayA.length - 1) {
+                // if keyA is valid element
+                if (keyA <= arrayA.length - 1) {
+                    // keyB is also valid and value at keyB is smaller
                     if (keyB <= arrayB.length - 1 && arrayA[keyA] > arrayB[keyB]) {
                         sortedArray[pos] = arrayB[keyB];
                         ++keyB;
                         ++pos;
-                    } else if (keyB <= arrayB.length - 1 && arrayA[keyA] <= arrayB[keyB]) {
+                    } // keyB is also valid and value at keyA is less than or equal to value at keyB
+                    else if (keyB <= arrayB.length - 1 && arrayA[keyA] <= arrayB[keyB]) {
                         // append keyA
                         sortedArray[pos] = arrayA[keyA];
                         ++keyA;
                         ++pos;
-
-                        // append all keyB
-                        while (keyB < arrayB.length) {
-                            sortedArray[pos] = arrayB[keyB];
-                            ++keyB;
-                            ++pos;
-                        }
-                    }
-                    else {
-                        // append keyA
-                        sortedArray[pos] = arrayA[keyA];
-                        ++keyA;
-                        ++pos;
-
-                    }
-                } // else if keyB is last element
-                else if (keyB == arrayB.length - 1) {
-                    if (keyA <= arrayA.length - 1 && arrayA[keyA] > arrayB[keyB]) {
-                        // append kayB
-                        sortedArray[pos] = arrayB[keyB];
-                        ++keyB;
-                        ++pos;
-
-                        // append all keyA
-                        while (keyA < arrayA.length) {
-                            sortedArray[pos] = arrayA[keyA];
-                            ++keyA;
-                            ++pos;
-                        }
-                    } else if (keyA <= arrayA.length - 1 && arrayA[keyA] <= arrayB[keyB]) {
+                    } else {
+                        // append keyA because keyB is not valid
                         sortedArray[pos] = arrayA[keyA];
                         ++keyA;
                         ++pos;
                     }
-                    else {
-                        // append kayB
-                        sortedArray[pos] = arrayB[keyB];
-                        ++keyB;
-                        ++pos;
-                    }
+                } // else if keyB is valid element
+                else if (keyB <= arrayB.length - 1) {
+                    // append kayB
+                    sortedArray[pos] = arrayB[keyB];
+                    ++keyB;
+                    ++pos;
                 }
             }
         } catch (IndexOutOfBoundsException e) {
