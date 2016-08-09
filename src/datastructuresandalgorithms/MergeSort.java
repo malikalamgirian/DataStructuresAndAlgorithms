@@ -58,67 +58,67 @@ public class MergeSort implements Sortable {
         int[] sortedArray = new int[arrayA.length + arrayB.length];
 
         try {
-            int i = 0, j = 0;
+            int keyA = 0, keyB = 0;
             int pos = 0;
 
             while (pos < sortedArray.length) {
-                // if i and j are intermediate
-                if (i < arrayA.length - 1 && j < arrayB.length - 1) {
-                    if (arrayA[i] > arrayB[j]) {
-                        System.out.println("Putting " + arrayB[j] + " at " + pos);
-                        sortedArray[pos] = arrayB[j];
+                // if keyA and keyB are intermediate
+                if (keyA < arrayA.length - 1 && keyB < arrayB.length - 1) {
+                    if (arrayA[keyA] > arrayB[keyB]) {
+                        System.out.println("Putting " + arrayB[keyB] + " at " + pos);
+                        sortedArray[pos] = arrayB[keyB];
 
-                        ++j;
+                        ++keyB;
                         ++pos;
-                    } else if (arrayA[i] <= arrayB[j]) {
-                        System.out.println("Putting " + arrayA[i] + " at " + pos);
-                        sortedArray[pos] = arrayA[i];
+                    } else if (arrayA[keyA] <= arrayB[keyB]) {
+                        System.out.println("Putting " + arrayA[keyA] + " at " + pos);
+                        sortedArray[pos] = arrayA[keyA];
 
-                        ++i;
+                        ++keyA;
                         ++pos;
                     }
                 } // else if i is last element
-                else if (i == arrayA.length - 1) {
-                    if (arrayA[i] > arrayB[j]) {
-                        System.out.println("Putting " + arrayB[j] + " at " + pos);
-                        sortedArray[pos] = arrayB[j];
-                        ++j;
+                else if (keyA == arrayA.length - 1) {
+                    if (arrayA[keyA] > arrayB[keyB]) {
+                        System.out.println("Putting " + arrayB[keyB] + " at " + pos);
+                        sortedArray[pos] = arrayB[keyB];
+                        ++keyB;
                         ++pos;                        
-                    } else if (arrayA[i] <= arrayB[j]) {
+                    } else if (arrayA[keyA] <= arrayB[keyB]) {
                         // append i
-                        System.out.println("Putting " + arrayA[i] + " at " + pos);
-                        sortedArray[pos] = arrayA[i];
-                        ++i;
+                        System.out.println("Putting " + arrayA[keyA] + " at " + pos);
+                        sortedArray[pos] = arrayA[keyA];
+                        ++keyA;
                         ++pos;
 
                         // append all j
-                        while (j < arrayB.length) {
-                            System.out.println("Putting " + arrayB[j] + " at " + pos);
-                            sortedArray[pos] = arrayB[j];
-                            ++j;
+                        while (keyB < arrayB.length) {
+                            System.out.println("Putting " + arrayB[keyB] + " at " + pos);
+                            sortedArray[pos] = arrayB[keyB];
+                            ++keyB;
                             ++pos;
                         }
                     }
                 } // else if j is last element
-                else if (j == arrayB.length - 1) {
-                    if (arrayA[i] > arrayB[j]) {
+                else if (keyB == arrayB.length - 1) {
+                    if (arrayA[keyA] > arrayB[keyB]) {
                         // append j
-                        System.out.println("Putting " + arrayB[j] + " at " + pos);
-                        sortedArray[pos] = arrayB[j];
-                        ++j;
+                        System.out.println("Putting " + arrayB[keyB] + " at " + pos);
+                        sortedArray[pos] = arrayB[keyB];
+                        ++keyB;
                         ++pos;
 
                         // append all i
-                        while (i < arrayA.length) {
-                            System.out.println("Putting " + arrayA[i] + " at " + pos);
-                            sortedArray[pos] = arrayA[i];
-                            ++i;
+                        while (keyA < arrayA.length) {
+                            System.out.println("Putting " + arrayA[keyA] + " at " + pos);
+                            sortedArray[pos] = arrayA[keyA];
+                            ++keyA;
                             ++pos;
                         }
-                    } else if (arrayA[i] <= arrayB[j]) {
-                        System.out.println("Putting " + arrayA[i] + " at " + pos);
-                        sortedArray[pos] = arrayA[i];
-                        ++i;
+                    } else if (arrayA[keyA] <= arrayB[keyB]) {
+                        System.out.println("Putting " + arrayA[keyA] + " at " + pos);
+                        sortedArray[pos] = arrayA[keyA];
+                        ++keyA;
                         ++pos;
                     }
                 }
